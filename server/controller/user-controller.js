@@ -4,7 +4,9 @@ import User from "../model/user-schema.js";
 
 
 
-
+//userSignup is backend api
+// data from frontend comes in request 
+// we send data from backend to frontend in response
 export const userSignup= async(request , response)=>{
      try{
 
@@ -13,7 +15,9 @@ export const userSignup= async(request , response)=>{
           return response.status(401).json({message:'Username already exist'})
          }
     const user=request.body;
+    // whatever came from frontend i.e. request.body needs to passed from userSchema 
     const newUser = User(user);
+    // save the data into database 
     await newUser.save()
 
     response.status(200).json({message:user})
