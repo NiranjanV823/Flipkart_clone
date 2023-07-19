@@ -5,7 +5,7 @@ import { Button, Divider, Box, Typography, styled } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import "react-multi-carousel/lib/styles.css";
 import Countdown from 'react-countdown';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const responsive = {
@@ -107,14 +107,14 @@ const MultiSlide = ({ data, timer, title }) => {
             >
                 {
                     data.map(temp => (
-                        // <Link to={`product/${temp.id}`} style={{textDecoration: 'none'}}>
+                        <Link to={`product/${temp.id}`} style={{textDecoration: 'none'}}>
                             <Box textAlign="center" style={{ padding: '25px 15px' }}>
                                 <Image src={temp.url} />
                                 <Text style={{ fontWeight: 600, color: '#212121' }}>{temp.title.shortTitle}</Text>
                                 <Text style={{ color: 'green' }}>{temp.discount}</Text>
                                 <Text style={{ color: '#212121', opacity: '.6' }}>{temp.tagline}</Text>
                             </Box>
-                        // </Link>
+                         </Link>
                     ))
                 }
             </Carousel>
