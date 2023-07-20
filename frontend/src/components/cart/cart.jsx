@@ -10,6 +10,8 @@ import TotalView from './TotalView';
 import EmptyCart from './EmptyCart';
 import CartItem from './cartItem';
 
+import { payUsingPaytm } from '../../service/api';
+import { post } from '../../utils/patym';
 
 
 const Component = styled(Grid)(({ theme }) => ({
@@ -65,6 +67,15 @@ const Cart = () => {
         dispatch(removeFromCart(id));
     }
 
+    const buyNow=async()=>{
+        let response = await payUsingPaytm({amount:500 , email:'niranjanverma823@gmail.com'})
+        let information={
+         action:'https://securegw-stage-paytm.in/order/process',
+         params:response
+        }
+        post(information)
+     }
+ 
     return (
         <>
         { cartItems.length ? 
@@ -79,7 +90,7 @@ const Cart = () => {
                         }
                     <BottomWrapper>
                         <StyledButton
-                        //  onClick={() => buyNow()} 
+                         onClick={() => buyNow()} 
                         variant="contained">Place Order</StyledButton>
                     </BottomWrapper>
                 </LeftComponent>

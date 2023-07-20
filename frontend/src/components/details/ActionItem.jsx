@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../redux/actions/cartAction';
 import { useState } from 'react';
-
+import { payUsingPaytm } from '../../service/api';
+import { post } from '../../utils/patym';
 
 
 
@@ -55,6 +56,15 @@ export default function ActionItem({product}) {
           navigate('/cart')
     }
 
+    const buyNow=async()=>{
+       let response = await payUsingPaytm({amount:500 , email:'niranjanverma823@gmail.com'})
+       let information={
+        action:'https://securegw-stage-paytm.in/order/process',
+        params:response
+       }
+       post(information)
+    }
+
 
   return (
     <LeftContainer>
@@ -63,7 +73,7 @@ export default function ActionItem({product}) {
         <Image src={product.detailUrl} alt="" />
         </Box>
         <StyledButton style={{marginRight:10,background:'#ff9f00' }} onClick={()=>addItemToCart()}><Cart/>Add to Cart</StyledButton>
-        <StyledButton style={{background:'#fb541b'}}><Flash/>Buy Now</StyledButton>
+        <StyledButton style={{background:'#fb541b'}} onClick={()=>buyNow()}><Flash/>Buy Now</StyledButton>
     </LeftContainer>
   )
 }

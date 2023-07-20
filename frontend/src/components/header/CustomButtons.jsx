@@ -7,7 +7,7 @@ import Profile from './Profile'
 
 import LoginDialog from '../login/LoginDialog'
 import { Link } from 'react-router-dom'
-import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector'
+import {  useSelector } from 'react-redux/es/hooks/useSelector'
 
 
 const Wrapper = styled(Box)(({theme})=>({
